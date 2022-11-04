@@ -444,6 +444,7 @@ tests/test_005.py
 
 ## Encontrando onde as fixtures foram definidas
 Os arquivos de conftest.py não são limitados em apenas um para todo o diretório de testes. Cada nível de diretório pode ter um e eles sempre se sobrescrevem quando o nome da fixture coincide. Isso pode gerar um problema já que, a medida que os testes crescem no projeto, pode se tornar difícil encontrar um fixture específica.
+
 Para resolver, podemos usar o comando com a flag --fixtures -v. O pytest exibirá uma lista de fixtures que estão disponíveis:
 
 ```shell
@@ -478,7 +479,7 @@ card_data -- tests/test_005.py:9
 # Parametrização
 
 A parametrização permite que sejam passados um ou mais valores que serão testados dentro de uma única função em loop. Permite que possamos aproveitar melhor os testes criados com novos cenários, sem ter que escrever mais código para isso.
-## parametrizando funções
+## Parametrizando funções
 
 Iremos utilizar a função parametrize decoradas nas funções para criarmos listas de valores que serão executados um por vez, evitando assim que muitos testes iguais sejam cridos:
 
@@ -652,3 +653,17 @@ Traceback (most recent call last):
   ...
 AssertionError: Expected 'hello' to not have been called. Called 1 times.
 ```
+
+# Menções honrosas
+
+## Model Bakery
+https://github.com/model-bakers/model_bakery
+
+Permite criar objetos das models que temos no Django. Ajuda bastante em testes onde precisamos simular o comportamento dos registros no banco de dados.
+
+## VCR
+https://vcrpy.readthedocs.io/en/latest/
+
+Registra na primeira vez todas as chamadas externas que fizermos nos testes. Registra isso em um arquivo e sempre que formos chamar de novo, ele faz a consulta direto no arquivo da resposta, como se fosse um log.
+
+Isso faz com que o retorno que está sendo mockado seja exatamente igual a chamada original.
